@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luxury Car | Collection Exclusive</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --rouge: #c00;
+            --jaune: #e8c547;
+            --blanc: #ffffff;
+            --noir: #1a1a1a;
+            --gris-fonce: #333;
+            --gris-clair: #f8f8f8;
+            --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+        
+        /* Page Vente - Design Élégant */
+        .vente-hero {
+            height: 70vh;
+            background: linear-gradient(rgba(26, 26, 26, 0.7), rgba(26, 26, 26, 0.7)), 
+                        url('images/misc/misc1.jpg') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            color: var(--blanc);
+            position: relative;
+            margin-bottom: 100px;
+        }
+        
+        .vente-hero-content {
+            max-width: 600px;
+            margin-left: 10%;
+        }
+        
+        .vente-hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+        
+        .vente-hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+        
+        .filter-section {
+            background: var(--blanc);
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.1);
+            width: 85%;
+            margin: -80px auto 60px;
+            position: relative;
+            z-index: 10;
+        }
+        
+        .filter-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 20px;
+        }
+        
+        .filter-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+        
+        .filter-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--gris-fonce);
+        }
+        
+        .filter-group select, .filter-group input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+            background: var(--blanc);
+            font-size: 0.95rem;
+            transition: var(--transition);
+        }
+        
+        .filter-group select:focus, .filter-group input:focus {
+            border-color: var(--rouge);
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(204, 0, 0, 0.1);
+        }
+        
+        .filter-actions {
+            grid-column: span 4;
+            display: flex;
+            justify-content: flex-end;
+            gap: 15px;
+            margin-top: 10px;
+        }
+        
+        /* Catalogue */
+        .catalogue-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px 80px;
+        }
+        
+        .catalogue-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+        
+        .catalogue-header h2 {
+            font-size: 1.8rem;
+            font-weight: 300;
+            color: var(--noir);
+        }
+        
+        .sort-options {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .catalogue-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 30px;
+        }
+        
+        .vehicle-card {
+            background: var(--blanc);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+            position: relative;
+        }
+        
+        .vehicle-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .vehicle-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--rouge);
+            color: var(--blanc);
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            z-index: 2;
+        }
+        
+        .vehicle-img {
+            height: 220px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .vehicle-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        
+        .vehicle-card:hover .vehicle-img img {
+            transform: scale(1.05);
+        }
+        
+        .vehicle-info {
+            padding: 25px;
+        }
+        
+        .vehicle-info h3 {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            font-weight: 500;
+            color: var(--noir);
+        }
+        
+        .vehicle-price {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--rouge);
+            margin-bottom: 15px;
+        }
+        
+        .vehicle-features {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+        
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+        }
+        
+        .feature-item i {
+            color: var(--jaune);
+        }
+        
+        .vehicle-actions {
+            display: flex;
+            gap: 12px;
+        }
+        
+        .btn-details {
+            flex: 1;
+            padding: 12px;
+            background: var(--noir);
+            color: var(--blanc);
+            border: none;
+            border-radius: 4px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: center;
+        }
+        
+        .btn-favorite {
+            width: 45px;
+            height: 45px;
+            background: var(--gris-clair);
+            color: var(--noir);
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .btn-favorite:hover, .btn-favorite.active {
+            color: var(--rouge);
+        }
+        
+        /* Pagination */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 60px;
+        }
+        
+        .pagination a {
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            color: var(--noir);
+            font-weight: 500;
+            transition: var(--transition);
+        }
+        
+        .pagination a:hover, .pagination a.active {
+            background: var(--rouge);
+            color: var(--blanc);
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            background: var(--noir);
+            color: var(--blanc);
+            padding: 80px 0;
+            text-align: center;
+        }
+        
+        .cta-content {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .cta-content h2 {
+            font-size: 2.5rem;
+            font-weight: 300;
+            margin-bottom: 20px;
+        }
+        
+        .cta-content p {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            opacity: 0.8;
+            line-height: 1.6;
+        }
+        
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .filter-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .filter-actions {
+                grid-column: span 2;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .vente-hero {
+                height: 60vh;
+                margin-bottom: 60px;
+            }
+            
+            .vente-hero-content {
+                margin-left: 5%;
+                max-width: 90%;
+            }
+            
+            .filter-section {
+                width: 90%;
+                padding: 30px;
+            }
+            
+            .filter-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .filter-actions {
+                grid-column: span 1;
+                justify-content: center;
+            }
+            
+            .catalogue-container {
+                padding: 0 20px 60px;
+            }
+            
+            .catalogue-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 20px;
+            }
+        }
+
+        /* Header Styles */
+header {
+    background-color: var(--blanc);
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    transition: all 0.3s ease;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--rouge);
+    letter-spacing: 1px;
+}
+
+.logo span {
+    color: var(--jaune);
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+}
+
+nav ul li {
+    margin-left: 30px;
+    position: relative;
+}
+
+nav ul li a {
+    font-weight: 500;
+    color: var(--noir);
+    transition: all 0.3s ease;
+    padding: 8px 0;
+    position: relative;
+}
+
+nav ul li a:hover {
+    color: var(--rouge);
+}
+
+nav ul li a.active {
+    color: var(--rouge);
+    font-weight: 600;
+}
+
+nav ul li a.active::after,
+nav ul li a:hover::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--rouge);
+    transform: scaleX(1);
+    transition: transform 0.3s ease;
+}
+
+nav ul li a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--rouge);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+/* Menu Mobile */
+.mobile-menu-btn {
+    display: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--noir);
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+    .header-container {
+        padding: 20px;
+    }
+    
+    nav {
+        position: fixed;
+        top: 80px;
+        left: -100%;
+        width: 100%;
+        background: var(--blanc);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+    }
+    
+    nav.active {
+        left: 0;
+    }
+    
+    nav ul {
+        flex-direction: column;
+        padding: 30px;
+    }
+    
+    nav ul li {
+        margin: 15px 0;
+    }
+    
+    .mobile-menu-btn {
+        display: block;
+    }
+}
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <!-- Header -->
+<header>
+    <div class="header-container">
+        <a href="index2.html" class="logo">LUXURY <span>CAR</span></a>
+        
+        <!-- Menu Mobile -->
+        <div class="mobile-menu-btn">
+            <i class="fas fa-bars"></i>
+        </div>
+        
+        <!-- Navigation Principale -->
+        <nav>
+            <ul>
+                <li><a href="index2.html">Accueil</a></li>
+                <li><a href="/vente" class="active">Vente</a></li>
+                <li><a href="/location">Location</a></li>
+                <li><a href="/reservation">Réserver</a></li>
+                <li><a href="/a-propos">À propos</a></li>
+                <li><a href="/contact">Contact</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+    <!-- Hero Section -->
+    <section class="vente-hero">
+        <div class="vente-hero-content">
+            <h1>Collection Exclusive</h1>
+            <p>Découvrez notre sélection de véhicules d'exception, rigoureusement sélectionnés pour leur élégance et leur performance.</p>
+            <a href="#collection" class="btn btn-primary">Explorer la collection</a>
+        </div>
+    </section>
+
+    <!-- Filtres -->
+    <section class="filter-section">
+        <div class="filter-header">
+            <h3>Trouvez votre véhicule idéal</h3>
+            <span>32 véhicules disponibles</span>
+        </div>
+        
+        <form class="filter-grid">
+            <div class="filter-group">
+                <label>Marque</label>
+                <select>
+                    <option value="">Toutes les marques</option>
+                    <option>Mercedes-Benz</option>
+                    <option>BMW</option>
+                    <option>Audi</option>
+                    <option>Porsche</option>
+                    <option>Range Rover</option>
+                    <option>Ferrari</option>
+                    <option>Lamborghini</option>
+                </select>
+            </div>
+            
+            <div class="filter-group">
+                <label>Modèle</label>
+                <select>
+                    <option value="">Tous les modèles</option>
+                    <option>Classe S</option>
+                    <option>Série 7</option>
+                    <option>A8</option>
+                    <option>911</option>
+                    <option>Velar</option>
+                </select>
+            </div>
+            
+            <div class="filter-group">
+                <label>Prix maximum</label>
+                <select>
+                    <option value="">Tous prix</option>
+                    <option>50 000€</option>
+                    <option>100 000€</option>
+                    <option>150 000€</option>
+                    <option>200 000€</option>
+                    <option>250 000€</option>
+                </select>
+            </div>
+            
+            <div class="filter-group">
+                <label>Année</label>
+                <select>
+                    <option value="">Toutes années</option>
+                    <option>2023</option>
+                    <option>2022</option>
+                    <option>2021</option>
+                    <option>2020</option>
+                </select>
+            </div>
+            
+            <div class="filter-actions">
+                <button type="reset" class="btn btn-secondary">Réinitialiser</button>
+                <button type="submit" class="btn btn-primary">Appliquer les filtres</button>
+            </div>
+        </form>
+    </section>
+
+    <!-- Catalogue -->
+    <section class="catalogue-container" id="collection">
+        <div class="catalogue-header">
+            <h2>Nos véhicules d'exception</h2>
+            <div class="sort-options">
+                <span>Trier par :</span>
+                <select>
+                    <option>Pertinence</option>
+                    <option>Prix (croissant)</option>
+                    <option>Prix (décroissant)</option>
+                    <option>Kilométrage</option>
+                    <option>Année (récentes)</option>
+                </select>
+            </div>
+        </div>
+        
+        <div class="catalogue-grid">
+            <!-- Véhicule 1 -->
+            <div class="vehicle-card">
+                <div class="vehicle-badge">Nouveauté</div>
+                <div class="vehicle-img">
+                    <img src="https://images.unsplash.com/photo-1555215695-3004980ad54e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Mercedes Classe S">
+                </div>
+                <div class="vehicle-info">
+                    <h3>Mercedes-Benz Classe S 500</h3>
+                    <div class="vehicle-price">120 000€</div>
+                    <div class="vehicle-features">
+                        <div class="feature-item">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span>15 000 km</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span>2022</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-gas-pump"></i>
+                            <span>Diesel</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-cog"></i>
+                            <span>Automatique</span>
+                        </div>
+                    </div>
+                    <div class="vehicle-actions">
+                        <button class="btn-details">Voir détails</button>
+                        <button class="btn-favorite">
+                            <i class="far fa-heart"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Véhicule 2 -->
+            <div class="vehicle-card">
+                <div class="vehicle-badge">Exclusivité</div>
+                <div class="vehicle-img">
+                    <img src="https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Range Rover Velar">
+                </div>
+                <div class="vehicle-info">
+                    <h3>Range Rover Velar</h3>
+                    <div class="vehicle-price">85 000€</div>
+                    <div class="vehicle-features">
+                        <div class="feature-item">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span>25 000 km</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span>2021</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-gas-pump"></i>
+                            <span>Essence</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-cog"></i>
+                            <span>Automatique</span>
+                        </div>
+                    </div>
+                    <div class="vehicle-actions">
+                        <button class="btn-details">Voir détails</button>
+                        <button class="btn-favorite">
+                            <i class="far fa-heart"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Ajoutez d'autres véhicules ici -->
+        </div>
+        
+        <div class="pagination">
+            <a href="#"><i class="fas fa-chevron-left"></i></a>
+            <a href="#" class="active">1</a>
+            <a href="#">2</a>
+            <a href="#">3</a>
+            <a href="#"><i class="fas fa-chevron-right"></i></a>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="cta-content">
+            <h2>Un véhicule sur mesure ?</h2>
+            <p>Notre service de recherche personnalisée peut trouver le véhicule de vos rêves, selon vos critères exacts.</p>
+            <a href="/contact" class="btn btn-primary">Demander un véhicule</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <!-- Votre footer existant -->
+    </footer>
+
+    <script>
+        // Script pour les favoris
+        document.querySelectorAll('.btn-favorite').forEach(btn => {
+            btn.addEventListener('click', function() {
+                this.classList.toggle('active');
+                this.innerHTML = this.classList.contains('active') 
+                    ? '<i class="fas fa-heart"></i>' 
+                    : '<i class="far fa-heart"></i>';
+            });
+        });
+        
+        // Script pour les filtres (à adapter avec votre logique backend)
+        const filterForm = document.querySelector('.filter-grid');
+        filterForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Implémentez ici la logique de filtrage
+            console.log('Filtres appliqués');
+        });
+    </script>
+</body>
+</html>
